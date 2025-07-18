@@ -1,16 +1,20 @@
 package com.doanandreas.hotelbooking.room;
 
-import com.doanandreas.hotelbooking.room.dto.GetAllRoomsDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.doanandreas.hotelbooking.room.dto.RoomDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rooms")
 public class RoomController {
 
     @GetMapping
-    public GetAllRoomsDto GetRooms() {
-        return new GetAllRoomsDto(304, true);
+    public RoomDto GetRooms() {
+        return new RoomDto(304, true);
+    }
+
+    @PostMapping
+    public RoomDto AddRoom(@RequestBody Room room) {
+        return new RoomDto(room.roomNumber(), false);
     }
 }
